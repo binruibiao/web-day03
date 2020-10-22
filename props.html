@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.min.js"></script>
+    <style>
+        .xxx {
+            border: 3px solid #e1005a;
+        }
+
+        .ooo {
+            border: 3px solid green;
+        }
+
+        .yyy {
+            border: 3px dashed blue;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div01">
+    // 数据相互独立
+    <component name="xxx"></component>
+    <component name="yyy"></component>
+    <component name="ooo"></component>
+</div>
+
+<script>
+    let component = {
+        data: function () {
+            return {
+                count: 0,
+            }
+        },
+        template: `<button v-on:click="count++" v-bind:class="name">You clicked me {{ count }} times.</button>`,
+        // 数据从模板中的组件代码传递到当前JS中的组件代码
+        props: ["name", ]
+    }
+
+    new Vue({
+        el: "#div01",
+        data: {
+
+        },
+        methods: {
+
+        },
+        computed: {
+
+        },
+        watch: {
+
+        },
+        components: {
+            component,
+        }
+    })
+</script>
+</body>
+</html>

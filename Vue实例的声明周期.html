@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+
+<script>
+    new Vue({
+        el: "#div01",
+        data: {
+            num: 21,
+        },
+        methods: {
+            change() {
+                this.num = this.foo
+            }
+        },
+        computed: {
+            foo() {
+                return 2 ** 10
+            }
+        },
+        // Vue实例生命周期的钩子函数（类似于代理）
+        beforeCreate() {
+            console.log('beforeCreate...')
+            console.log('data is: ' + this.$data)
+            console.log('el is: ' + this.$el)
+            console.log('num is: ' + this.num)
+        },
+        created() {
+            console.log('created...')
+            console.log('data is: ' + this.$data)
+            console.log('el is: ' + this.$el)
+            console.log('num is: ' + this.num)
+        },
+        beforeMount() {
+            // el已确定对应的DOM元素，但DOM元素内容尚未渲染
+            console.log('beforeMount...')
+            console.log('data is: ' + this.$data)
+            console.log('el is: ' + this.$el)
+            console.log('num is: ' + this.num)
+        },
+        mounted() {
+            // Vue绑定的DOM元素渲染完毕
+            console.log('mounted...')
+            console.log('data is: ' + this.$data)
+            console.log('el is: ' + this.$el)
+            console.log('num is: ' + this.num)
+        },
+        beforeUpdate() {
+            // Vue实例中的data已更新，但是模板中的渲染结果未更新
+            console.log('beforeUpdate...')
+            console.log('data is: ' + this.$data)
+            console.log('el is: ' + this.$el)
+            console.log('num is: ' + this.num)
+        },
+        updated() {
+            // Vue实例中的data与模板中的显示数据保持一致（更新后的）
+            console.log('updated...')
+            console.log('data is: ' + this.$data)
+            console.log('el is: ' + this.$el)
+            console.log('num is: ' + this.num)
+        },
+        beforeDestroy() {
+            console.log('beforeDestroy...')
+            console.log('data is: ' + this.$data)
+            console.log('el is: ' + this.$el)
+            console.log('num is: ' + this.num)
+        },
+        destroyed() {
+            console.log('destroyed...')
+            console.log('data is: ' + this.$data)
+            console.log('el is: ' + this.$el)
+            console.log('num is: ' + this.num)
+        },
+    })
+</script>
+</body>
+</html>

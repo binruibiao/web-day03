@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+
+<!--<div id="div01">-->
+<!--&lt;!&ndash;    <p v-on:click="desc">{{ num }}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;    <p>十位：{{ Math.abs(parseInt(num / 10)) }}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;    <p>个位：{{ Math.abs(num % 10) }}</p>&ndash;&gt;-->
+<!--    <input type="text" v-model="hp" maxlength="1" />-->
+<!--    <input type="text" v-model="lp" maxlength="1"  />-->
+<!--    <h5>{{ result }}</h5>-->
+<!--</div>-->
+
+<div id="div02">
+    <h3 v-on:click="descNum">{{ num }}</h3>
+    <h5>十位：{{ hp }}</h5>
+    <h5>个位：{{ lp }}</h5>
+</div>
+
+<!--<script>-->
+<!--    // 多个变量的变化影响一个变量，要求出这个变量动态变化的值-->
+<!--    new Vue({-->
+<!--        el: "#div01",-->
+<!--        data: {-->
+<!--            num: 21,-->
+<!--            hp: "0",-->
+<!--            lp: "0",-->
+<!--        },-->
+<!--        methods: {-->
+<!--            desc() {-->
+<!--                this.num&#45;&#45;-->
+<!--            }-->
+<!--        },-->
+<!--        computed: {-->
+<!--            result() {-->
+<!--                if (!eval(this.hp)) {-->
+<!--                    return 0-->
+<!--                }-->
+<!--                return this.hp + this.lp-->
+<!--            }-->
+<!--        }-->
+<!--    })-->
+<!--    /**-->
+<!--     * computed用来定义方法属性-->
+<!--     * 定义的方法不能与data中的属性重名-->
+<!--     * 定义的方法属性必须在页面中使用 => 渲染，才能生效（对data数据进行监听）-->
+<!--     * **/-->
+<!--</script>-->
+
+<script>
+    // 一个变量的变化影响多个变量，要求出这多个变量动态变化的值
+    new Vue({
+        el: "#div02",
+        data: {
+            num: 88,
+            hp: 8,
+            lp: 8,
+        },
+
+        methods: {
+            descNum() {
+                this.num--
+            }
+        },
+
+        watch: {
+            // 那个变量将会影响其他多个变量，name就可以选择在watch下定义同名的方法（方法内直接写其他数据的更新逻辑）
+            // 该方法监听的数据一旦发生修改，就会触发该函数逻辑，无需返回值
+            num () {
+                this.hp = Math.abs(parseInt(this.num / 10))
+                this.lp = Math.abs(this.num % 10)
+            }
+        },
+    })
+</script>
+</body>
+</html>

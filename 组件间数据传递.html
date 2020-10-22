@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+
+<!--<div id="div01">-->
+<!--    <input type="text" v-model="name" />-->
+<!--    <br />-->
+<!--    父组件的data.name: <h1>{{ name }}</h1>-->
+<!--    父组件的data.age: <h1>{{ age }}</h1>-->
+<!--    <hr />-->
+
+<!--    <component v-bind:tmp="name" v-bind:tmp2="age"></component>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--    // 注意：尽量不要在子组件的js代码中修改父组件传递的数据-->
+<!--    // props也是组件有别于Vue实例的一处-->
+<!--    let component = {-->
+<!--        data: function () {-->
+<!--            return {-->
+
+<!--            }-->
+<!--        },-->
+<!--        template: `<div>这是从父组件传递的数据<h1>{{ tmp }}</h1>, <h1>{{ tmp2 }}</h1></div>`,-->
+<!--        methods: {-->
+
+<!--        },-->
+<!--        props: ["tmp", "tmp2", ],-->
+<!--    }-->
+
+<!--    new Vue({-->
+<!--        el: '#div01',-->
+<!--        data: {-->
+<!--            name: "",-->
+<!--            age: 21,-->
+<!--        },-->
+<!--        methods: {-->
+
+<!--        },-->
+<!--        computed: {-->
+
+<!--        },-->
+<!--        watch: {-->
+
+<!--        },-->
+<!--        components: {-->
+<!--            component,-->
+<!--        }-->
+<!--    })-->
+<!--</script>-->
+
+<div id="div">
+    这是父组件的data.name: {{ name }}
+    <component @xxxEvent="eventHandler"></component>
+</div>
+
+<script>
+    let component = {
+        data: function () {
+            return {
+                source: "我是卞瑞彪，不是有才！！！",
+            }
+        },
+        methods: {
+            clickBtn() {
+                // 实现数据的子传父，需要clickBtn事件绑定，该事件Handler内部
+                // 需要通过$emit来自定义事件，该事件的目标对象即父组件！
+                this.$emit('xxxEvent', this.source)
+                console.log(this.source)
+            },
+        },
+        template: `<button @click="clickBtn">按钮</button>`
+    }
+    new Vue({
+        el: '#div',
+        data: {
+            name: "卞太有才",
+            age: 21,
+        },
+        methods: {
+            eventHandler(params) {
+                console.log(params)
+            }
+        },
+        components: {
+            component,
+        }
+    })
+</script>
+</body>
+</html>

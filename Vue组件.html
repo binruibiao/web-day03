@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+
+
+
+<!-- 组件的使用：组件的定义、组件的注册、模板中组件的渲染
+     组件就是一个普通的JS对象
+     组件的定义类似于Vue实例（本质也是一个组件）的定义，
+     但是，组件中的data必须是一个function，但不能是箭头函数
+     组件中的data相互隔离（哪怕是同一个组件的多次使用），原因在于data函数返回的是一份值的拷贝
+ -->
+
+<!-- 全局组件：
+     局部组件：
+ -->
+<!--<div id="div01">-->
+<!--    <first-component>三个组件之间相互隔离（文字看不见）</first-component>-->
+<!--    <first-component>三个组件之间相互隔离（文字看不见）</first-component>-->
+<!--    <first-component>三个组件之间相互隔离（文字看不见）</first-component>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--    // 组件的定义-->
+<!--    let component1 = {-->
+<!--        data: function () {-->
+<!--            return {-->
+<!--                name: "Ruibiao",-->
+<!--            }-->
+<!--        },-->
+<!--        template: `<div>this is the {{ name }}'s first component！</div>`-->
+<!--    }-->
+<!--    // 组件的注册（全局注册）-->
+<!--    Vue.component("first-component", component1)-->
+
+<!--    new Vue({-->
+<!--        el: "#div01",-->
+<!--        data: {-->
+
+<!--        },-->
+<!--        methods: {-->
+
+<!--        },-->
+<!--        computed: {-->
+
+<!--        },-->
+<!--        watch: {-->
+
+<!--        },-->
+<!--    })-->
+<!--</script>-->
+
+<!--<div id="div02">-->
+<!--    <second-component></second-component>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--    // 子组件-->
+<!--    let component2 = {-->
+<!--        data: function () {-->
+<!--            return {-->
+<!--                name: 'Ruibiao',-->
+<!--            }-->
+<!--        },-->
+<!--        template: `<div><span @click="change">这是组件中的span内容，{{ name }}</span></div>`,-->
+<!--        methods: {-->
+<!--            change() {-->
+<!--                if (this.name === "Ruibiao") {-->
+<!--                    this.name = "瑞彪"-->
+<!--                } else {-->
+<!--                    this.name = "Ruibiao"-->
+<!--                }-->
+<!--            }-->
+<!--        },-->
+<!--    }-->
+
+<!--    Vue.component("second-component", component2)-->
+<!--    // 父组件-->
+<!--    new Vue({-->
+<!--        el: "#div02",-->
+<!--        data: {-->
+
+<!--        },-->
+<!--        methods: {-->
+
+<!--        },-->
+<!--        computed: {-->
+
+<!--        },-->
+<!--        watch: {-->
+
+<!--        },-->
+<!--    })-->
+<!--</script>-->
+
+<!--<div id="div03">-->
+<!--    <component3></component3>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--    let component3 = {-->
+<!--        data: function () {-->
+<!--            return {-->
+<!--                name: "Ruibiao",-->
+<!--            }-->
+<!--        },-->
+<!--        template: `<div @click="change">这是局部注册方式下的组件{{ name }}</div>`,-->
+<!--        methods: {-->
+<!--            change() {-->
+<!--                if (this.name === 'Ruibiao') {-->
+<!--                    this.name = '瑞彪'-->
+<!--                } else {-->
+<!--                    this.name = 'Ruibiao'-->
+<!--                }-->
+<!--            }-->
+<!--        },-->
+<!--    }-->
+
+<!--    new Vue({-->
+<!--        el: "#div03",-->
+<!--        data: {-->
+
+<!--        },-->
+<!--        methods: {-->
+
+<!--        },-->
+<!--        computed: {-->
+
+<!--        },-->
+<!--        watch: {-->
+
+<!--        },-->
+<!--        components: {-->
+<!--            // 属性的简写形式es6-->
+<!--            component3,-->
+<!--        }-->
+<!--    })-->
+<!--</script>-->
+
+<div id="div04">
+    <component4></component4>
+</div>
+
+<script>
+    let component4 = {
+        data: function () {
+            return {
+                name: 'Ruibiao',
+            }
+        },
+        template: `<div v-on:click="change">这是第四个组件{{ name }}</div>`,
+        methods: {
+            change() {
+                if (this.name === 'Ruibiao') {
+                    this.name = '瑞彪'
+                } else {
+                    this.name = 'Ruibiao'
+                }
+            },
+        },
+    }
+
+    new Vue({
+        el: "#div04",
+        data: {
+
+        },
+        methods: {
+
+        },
+        computed: {
+
+        },
+        watch: {
+
+        },
+        components: {
+            component4,
+        }
+    })
+</script>
+
+</body>
+</html>
